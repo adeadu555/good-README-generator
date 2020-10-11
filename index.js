@@ -48,13 +48,13 @@ inquirer
 
   ]).then(function(response){
 
-    var generateReadme =`
-    ${response.title}
+    const generateReadme =`
+   # ${response.title}
    
     ${response.description}
   
     ${response.installation}
-   
+
     ${response.usage}
    
     ${response.contributing}
