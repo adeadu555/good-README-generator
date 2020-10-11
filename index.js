@@ -25,10 +25,11 @@ inquirer
         name: "usage",
         message: "How do you use your application?"
     },
+
     {
         type: "input",
         name: "license",
-        message: "Which is the license?"
+        message: "Which is the license?",
         options: ["MIT", "NoLicense"],
 
     },
@@ -43,17 +44,35 @@ inquirer
         type: "input",
         name: "test",
         message: "How is your application tested?"
-    },
-
-    /* Pass your questions in here */
-  ])
-  .then(answers => {
-    // Use user feedback for... whatever!!
-  })
-  .catch(error => {
-    if(error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else when wrong
     }
-  });
+
+  ]).then(function(response){
+
+    var generateReadme =`
+    ${response.title}
+   
+    ${response.description}
+  
+    ${response.installation}
+   
+    ${response.usage}
+   
+    ${response.contributing}
+   
+    ${response.license}
+   
+    ${response.test} `;
+    
+      
+     fs.writeFile("README.md", generateReadme, function(err) {
+    
+    
+            if (err) {
+                return console.log(err);
+            }
+    
+            console.log("Project README has been generated!")
+
+
+ });
+});
